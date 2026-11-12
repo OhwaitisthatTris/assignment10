@@ -1,1 +1,37 @@
+Tristan Crawford
+
+1. Pick the heaviest edge instead of the lightest. Since Python's
+   PriorityQueue is a min-heap, I would put each edge in with its weight
+   negated so the biggest one comes out first.
+ 
+2. An MST connects every vertex with the least total weight, has no cycles,
+   and has V - 1 edges. A TSP solution is one closed tour that visits every
+   vertex once and comes back to the start. TSP is NP-hard, an MST is not.
+ 
+3. (blank = no direct edge)
+ 
+   +---------------+---------+---------------+-------------+-----------+---------+
+   |               | Seattle | San Francisco | Los Angeles | Riverside | Phoenix |
+   +---------------+---------+---------------+-------------+-----------+---------+
+   | Seattle       |    0    |      678      |             |           |         |
+   | San Francisco |   678   |       0       |     348     |    386    |         |
+   | Los Angeles   |         |      348      |      0      |     50    |   357   |
+   | Riverside     |         |      386      |      50     |      0    |   307   |
+   | Phoenix       |         |               |     357     |    307    |    0    |
+   +---------------+---------+---------------+-------------+-----------+---------+
+ 
+4. With a binary heap it is O(E log V). Without one it is O(V^2). The
+   difference is finding the cheapest edge: a heap does it in O(log n), but
+   scanning all the candidates every step costs O(n).
+ 
+5. Every step it takes the cheapest edge that reaches a new vertex and never
+   goes back on it. That is a greedy choice. It still gives the best answer
+   because the cheapest edge across any cut is always part of some MST.
+ 
+6. The Fast Fourier Transform is called Cooley-Tukey, but Gauss came up with
+   it around 1805. It computes the Fourier transform in O(n log n) instead
+   of O(n^2). Gauss never published it on its own. It only showed up after
+   he died, in his collected works (1866), written in Latin, so nobody
+   noticed. Cooley and Tukey published it in 1965.
+   Source: https://en.wikipedia.org/wiki/Fast_Fourier_transform 
 
