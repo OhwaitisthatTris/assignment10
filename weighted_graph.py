@@ -1,6 +1,6 @@
 # weighted_graph.py
 # A weighted graph stored using an adjacency list
-# Modified by:
+# Modified by: Tristan Crawford
 # Note: Please write this yourself, not using an LLM.
 from queue import PriorityQueue
 from dataclasses import dataclass
@@ -51,10 +51,24 @@ class WeightedGraph:
     # Returns a list of weighted edges composing the MST
     def jarnik(self, start):
         result = [] # final weighted edges in MST
-        # YOUR CODE HERE
-        
+         # Jarnik's (Prim's) algorithm is greedy: grow one tree outward
+        # visited holds the vertices already in the tree
+        visited = {start}
+        frontier = PriorityQueue()
+        for edge in self.edges_from(start):
+            frontier.put(edge)
+        while not frontier.empty():
+            edge = frontier.get()
+         
+            if edge.to in visited:
+                continue
+            result.append(edge)
+            visited.add(edge.to)
+           
+            for next_edge in self.edges_from(edge.to):
+                if next_edge.to not in visited:
+                    frontier.put(next_edge)
         return result
-    
     
     def __str__(self):
         return '\n'.join(f"{vertex}: {[f'{edge.to}({edge.weight})' for edge in edges]}"
