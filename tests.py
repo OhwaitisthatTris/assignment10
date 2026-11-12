@@ -95,9 +95,9 @@ class TestMSTCityGraph2(unittest.TestCase):
         print("------cityGraph2 mst------")
         print_edges(result)
         
-        # Are there the right number of edges in the result?
+        # Are there the right number of edges in the result? no
         self.assertEqual(len(result), len(cityGraph2._adjacency_list) - 1)
-        # Is it the right total weight?
+        # Is it the right total weight? no
         self.assertEqual(total_weight(result), 5372)
         # Make sure these are all valid edges
         for we in result:
